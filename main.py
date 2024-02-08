@@ -13,13 +13,6 @@ import glob
 import os
 from math import cos, pi
 
-
-"""
-没有划分独立的验证集，直接使用测试集当作验证集。
-对比模型和我们的标准一致。
-"""
-
-
 # BCELoss
 class Myloss(nn.Module):
     def __init__(self):
@@ -159,9 +152,7 @@ def main():
         print('-'*50)
         _config.FOLD = i
         print('processing Fold: ', _config.FOLD)
-        # 数据初始化
         dataset = prepare_data(_config)  # dataset这里是dict
-        # 模型初始化
         model = Model(_config)
         optimizer = optim.Adam(model.parameters(), lr=0.01)
         train(model, dataset, optimizer, _config)
